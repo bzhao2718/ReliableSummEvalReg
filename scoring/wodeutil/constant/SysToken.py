@@ -1,0 +1,31 @@
+import argparse
+
+SysToken = argparse.Namespace(
+    SUCCESS_IND=1,
+    FAIL_IND=0,
+    EXT_JSON=".json",
+    EXT_TXT=".txt",
+    EXT_PT=".pt",
+    EXT_INI=".ini",
+    backup="backup",
+    workspace_init="wordspace.ini",
+    WORKSPACE_CONFIG_PATH="WORKSAPCE_INIT_PATH",
+    TASK_CONFIG_PATH="TASK_CONFIG_PATH",
+    str_config="config",
+    str_config_data="config_data",
+    str_experiment="experiment",
+    str_data="data",
+    str_model="task",
+    str_workspace="workspace",
+    str_src="src",
+    data_dirs=['raw', 'processed', 'interim', 'sample'],
+    prj_dirs=['data_loader', 'prj_config', 'experiment', 'data', 'model', 'trainers', 'tasks', 'wodeutil'],
+    src_dirs=['utils', 'task', 'trainers', 'data_loader'],
+    exp_dirs=['chkpoint'],
+    # str_NEPTUNE_API_TOKEN="NEPTUNE_API_TOKEN",
+    # str_COMET_API_TOKEN="COMET_API_TOKEN",
+    API_TOKENS=["NEPTUNE_API_TOKEN", "COMET_API_TOKEN"],
+    TASK_SAMPLE="ReverseSenTask",
+    WORKSPACE_INI="workspace.ini",
+
+)
