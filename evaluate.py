@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from scoring.wodeutil.nlp.metrics.eval_constants import *
+from cal_scores.wodeutil.nlp.metrics.eval_constants import *
 
 import os
 import pandas as pd
@@ -57,12 +57,12 @@ def default_args(parser, feature_combine=20, file_path=None):
     else:
         metrics = feature5
     parser.add_argument('--config-file', type=str,
-                        default="scoring/SummEval/evaluation/examples/basic.config",
+                        default="cal_scores/SummEval/evaluation/examples/basic.config",
                         help='config file with metric parameters')
 
     parser.add_argument('--metrics', type=str, default=metrics, help='comma-separated string of metrics')
     parser.add_argument('--aggregate', type=bool, help='whether to aggregate scores')
-    # parser.add_argument('--jsonl-file', default="scoring/SummEval/external/data_annotations/model_annotations.aligned.paired.jsonl", type=str, help='input jsonl file to score')
+    # parser.add_argument('--jsonl-file', default="cal_scores/SummEval/external/data_annotations/model_annotations.aligned.paired.jsonl", type=str, help='input jsonl file to score')
     parser.add_argument('--jsonl-file',
                         default=file_path,
                         type=str, help='input jsonl file to score')
@@ -81,7 +81,7 @@ def default_args(parser, feature_combine=20, file_path=None):
 def evaluate(summary_path, feature_combine=20, save_to=None):
     """
         1. add path info and score calculation specs
-        2. pass the info to Summeval library and calculate the scores
+        2. pass the info to SummEval library and calculate the scores
         3. save the scores and convert it to a dataframe object df_features
         4. load the model and pass df_features and predict the scores
         5. save the result specified to save_to
@@ -105,7 +105,7 @@ def evaluate(summary_path, feature_combine=20, save_to=None):
 def evaluate_from_path():
     """
         1. add path info and score calculation specs from args
-        2. pass the info to Summeval library and calculate the scores
+        2. pass the info to SummEval library and calculate the scores
         3. save the scores and convert it to a dataframe object df_features
         4. load the model and pass df_features and predict the scores
         5. save the result specified to save_to
@@ -128,7 +128,7 @@ def evaluate_from_path():
 
 
 if __name__ == '__main__':
-    # summary_path = "scoring/SummEval/external/data_annotations/3sample.aligned.paired.jsonl"
-    # save_to = "scoring/SummEval/external/data_annotations/temp_results.csv"
+    # summary_path = "cal_scores/SummEval/external/data_annotations/3sample.aligned.paired.jsonl"
+    # save_to = "cal_scores/SummEval/external/data_annotations/temp_results.csv"
     # evaluate_from_path(summary_path=summary_path, save_to=save_to)
     evaluate_from_path()

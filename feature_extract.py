@@ -10,7 +10,7 @@ import spacy
 from df_util import scores_json_to_df
 
 """
-This is the cal_score.py file from SummEval package
+This is the cal_scores.py file from SummEval package
 """
 
 

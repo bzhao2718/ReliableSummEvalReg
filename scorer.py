@@ -12,11 +12,11 @@ from summ_eval.sentence_movers_metric import SentenceMoversMetric
 from summ_eval.summa_qa_metric import SummaQAMetric
 from summ_eval.meteor_metric import MeteorMetric
 from summ_eval.bleu_metric import BleuMetric
-from scoring.wodeutil.nlp.metrics.file_util import load_df, clean_cnn_text
+from cal_scores.wodeutil.nlp.metrics.file_util import load_df, clean_cnn_text
 from collections import defaultdict
 from summ_eval.data_stats_metric import DataStatsMetric
 from summ_eval.s3_metric import S3Metric
-from scoring.SummEval.evaluation.summ_eval.JS_metric import JSMetric
+from cal_scores.SummEval.evaluation.summ_eval.JS_metric import JSMetric
 import pandas as pd
 from summ_eval.test_util import CAND_R, REF_R, rouge_output, rouge_output_batch, CANDS, REFS, EPS
 

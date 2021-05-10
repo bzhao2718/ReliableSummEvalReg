@@ -1,4 +1,4 @@
-from scoring.wodeutil.nlp.metrics.eval_constants import *
+from cal_scores.wodeutil.nlp.metrics.eval_constants import *
 import os
 import pandas as pd
 from sklearn.linear_model import LinearRegression

@@ -7,8 +7,8 @@ from collections import defaultdict
 import pandas as pd
 
 # from scipy.stats import pearsonr, spearmanr, kendalltau
-from scoring.wodeutil.nlp.metrics.file_util import load_df, get_files_in_dir
-from scoring.wodeutil.nlp.metrics.eval_constants import *
+from cal_scores.wodeutil.nlp.metrics.file_util import load_df, get_files_in_dir
+from cal_scores.wodeutil.nlp.metrics.eval_constants import *
 
 def clean_summary(seq, clean_sep=False):
     if seq:

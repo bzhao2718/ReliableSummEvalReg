@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
-from scoring.wodeutil.nlp.metrics.eval_constants import *
+from cal_scores.wodeutil.nlp.metrics.eval_constants import *
 from sklearn.ensemble import RandomForestRegressor
 
 from sklearn.linear_model import LassoCV
