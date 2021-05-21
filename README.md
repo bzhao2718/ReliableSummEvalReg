@@ -1,5 +1,5 @@
 # ReliableSummEvalReg
-Upload descriptions.
+Descriptions to be added.
 
 
 
