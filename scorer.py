@@ -1,24 +1,24 @@
 import os
 
 import spacy
-from summ_eval.rouge_metric import RougeMetric
-from summ_eval.rouge_we_metric import RougeWeMetric
-from summ_eval.bert_score_metric import BertScoreMetric
-from summ_eval.blanc_metric import BlancMetric
-from summ_eval.chrfpp_metric import ChrfppMetric
-from summ_eval.cider_metric import CiderMetric
-from summ_eval.mover_score_metric import MoverScoreMetric
-from summ_eval.sentence_movers_metric import SentenceMoversMetric
-from summ_eval.summa_qa_metric import SummaQAMetric
-from summ_eval.meteor_metric import MeteorMetric
-from summ_eval.bleu_metric import BleuMetric
+from cal_scores.SummEval.evaluation.summ_eval.rouge_metric import RougeMetric
+from cal_scores.SummEval.evaluation.summ_eval.rouge_we_metric import RougeWeMetric
+from cal_scores.SummEval.evaluation.summ_eval.bert_score_metric import BertScoreMetric
+from cal_scores.SummEval.evaluation.summ_eval.blanc_metric import BlancMetric
+from cal_scores.SummEval.evaluation.summ_eval.chrfpp_metric import ChrfppMetric
+from cal_scores.SummEval.evaluation.summ_eval.cider_metric import CiderMetric
+from cal_scores.SummEval.evaluation.summ_eval.mover_score_metric import MoverScoreMetric
+from cal_scores.SummEval.evaluation.summ_eval.sentence_movers_metric import SentenceMoversMetric
+from cal_scores.SummEval.evaluation.summ_eval.summa_qa_metric import SummaQAMetric
+from cal_scores.SummEval.evaluation.summ_eval.meteor_metric import MeteorMetric
+from cal_scores.SummEval.evaluation.summ_eval.bleu_metric import BleuMetric
+from cal_scores.SummEval.evaluation.summ_eval.data_stats_metric import DataStatsMetric
+from cal_scores.SummEval.evaluation.summ_eval.s3_metric import S3Metric
 from cal_scores.wodeutil.nlp.metrics.file_util import load_df, clean_cnn_text
 from collections import defaultdict
-from summ_eval.data_stats_metric import DataStatsMetric
-from summ_eval.s3_metric import S3Metric
+
 from cal_scores.SummEval.evaluation.summ_eval.JS_metric import JSMetric
 import pandas as pd
-from summ_eval.test_util import CAND_R, REF_R, rouge_output, rouge_output_batch, CANDS, REFS, EPS
 
 # from set_path import set_path
 
@@ -249,7 +249,7 @@ class MetricScorer():
                     for k, v in score.items():
                         results[k].append(v)
 
-    def add_JS_to_results(self, cand: str, ref: str, results: defaultdict):
+    def add_JS_to_results(self, cand: str, ref: str, results: defaultdict, scorer=None):
         if cand and ref:
             js_dict = scorer.get_JS(cand, ref, batch_mode=True)
             self.add_metric_score(js_dict, results=results)
@@ -375,5 +375,36 @@ class MetricScorer():
                     print(
                         f"................ append results and save it to {save_to} ...............")
 
-if __name__ == '__main__':
+def example_rouge_we():
+    example_cand = "cats and dogs have the advantage over marine pets in that they can interact with humans through the sense of touch."
+    example_ref = "cats and dogs can interact with humans through the sense of touch, therefore they have the advantage over marine pets."
     scorer = MetricScorer()
+    score1 = scorer.get_rouge_we(example_cand, example_ref, n_gram=1)
+    score2 = scorer.get_rouge_we(example_cand, example_ref, n_gram=2)
+    score3 = scorer.get_rouge_we(example_cand, example_ref, n_gram=3)
+    print("rouge_we n_gram=1: ")
+    print(score1)
+    print("rouge_we n_gram=2: ")
+    print(score2)
+    print("rouge_we n_gram=3: ")
+    print(score3)
+
+
+def example_meteor():
+    example_cand = "cats and dogs have the advantage over marine pets in that they can interact with humans through the sense of touch."
+    example_ref = "cats and dogs can interact with humans through the sense of touch, therefore they have the advantage over marine pets."
+    scorer = MetricScorer()
+    score = scorer.get_meteor(example_cand, example_ref)
+    print(score)
+
+
+def example_bleu():
+    example_cand = "cats and dogs have the advantage over marine pets in that they can interact with humans through the sense of touch."
+    example_ref = "cats and dogs can interact with humans through the sense of touch, therefore they have the advantage over marine pets."
+    scorer = MetricScorer()
+    score = scorer.get_bleu(example_cand, example_ref)
+    print(score)
+
+if __name__ == '__main__':
+    # scorer = MetricScorer()
+    example_bleu()

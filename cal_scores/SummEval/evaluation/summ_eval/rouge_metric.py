@@ -5,8 +5,10 @@ import shutil
 import logging
 import gin
 from pyrouge import Rouge155
-from summ_eval.metric import Metric
-from summ_eval.test_util import rouge_empty
+# from summ_eval.metric import Metric
+# from summ_eval.test_util import rouge_empty
+from cal_scores.SummEval.evaluation.summ_eval.metric import Metric
+from cal_scores.SummEval.evaluation.summ_eval.test_util import rouge_empty
 
 # from set_path import set_path
 # set_path()

@@ -3,9 +3,10 @@ import os
 from multiprocessing import Pool
 from collections import Counter
 import gin
-from summ_eval.s3_utils import rouge_n_we, load_embeddings
-from summ_eval.metric import Metric
-
+# from summ_eval.s3_utils import rouge_n_we, load_embeddings
+# from summ_eval.metric import Metric
+from cal_scores.SummEval.evaluation.summ_eval.s3_utils import rouge_n_we, load_embeddings
+from cal_scores.SummEval.evaluation.summ_eval.metric import Metric
 dirname = os.path.dirname(__file__)
 
 @gin.configurable

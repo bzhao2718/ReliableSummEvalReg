@@ -102,7 +102,7 @@ def evaluate(summary_path, feature_combine=20, save_to=None):
     print("------------- Prediction Done ---------------")
 
 
-def evaluate_from_path():
+def evaluate_from_path(filepath=""):
     """
         1. add path info and score calculation specs from args
         2. pass the info to SummEval library and calculate the scores
@@ -111,7 +111,7 @@ def evaluate_from_path():
         5. save the result specified to save_to
     """
     parser = argparse.ArgumentParser(description="predictor")
-    args = default_args(parser=parser, feature_combine=20)
+    args = default_args(parser=parser, feature_combine=20,file_path=filepath)
     print(f"----------- Extract features ----------------")
     df_features = get_features_as_df(args)
     feature_combine = args.feature_combine
