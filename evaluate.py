@@ -48,7 +48,7 @@ def predict_score(df_features, regr_name=regr_nn_keras, col_name="Filter20", is_
         df_pred.to_csv(save_to, index=False)
 
 
-def default_args(parser, feature_combine=20, file_path=None):
+def default_args(parser, feature_combine=20, summary_path=None):
     feature20 = "rouge,bert_score, mover_score,meteor,bleu,rouge_we,stats,sms"
     feature20 = "bleu,chrf,meteor,cider,bert_score, mover_score,stats,sms"
     feature5 = "stats"
@@ -56,6 +56,8 @@ def default_args(parser, feature_combine=20, file_path=None):
         metrics = feature20
     else:
         metrics = feature5
+    if not summary_path: # default summary_path
+        summary_path = "cal_scores/SummEval/evaluation/examples/"
     parser.add_argument('--config-file', type=str,
                         default="cal_scores/SummEval/evaluation/examples/basic.config",
                         help='config file with metric parameters')
@@ -64,7 +66,7 @@ def default_args(parser, feature_combine=20, file_path=None):
     parser.add_argument('--aggregate', type=bool, help='whether to aggregate scores')
     # parser.add_argument('--jsonl-file', default="cal_scores/SummEval/external/data_annotations/model_annotations.aligned.paired.jsonl", type=str, help='input jsonl file to score')
     parser.add_argument('--jsonl-file',
-                        default=file_path,
+                        default=summary_path,
                         type=str, help='input jsonl file to score')
 
     parser.add_argument('--article-file', type=str, help='input article file')
@@ -87,7 +89,7 @@ def evaluate(summary_path, feature_combine=20, save_to=None):
         5. save the result specified to save_to
     """
     parser = argparse.ArgumentParser(description="predictor")
-    args = default_args(parser=parser, file_path=summary_path, feature_combine=5)
+    args = default_args(parser=parser, summary_path=summary_path, feature_combine=5)
     print(f"----------- Extract features ----------------")
     df_features = get_features_as_df(args)
     if feature_combine == 20:
@@ -102,7 +104,7 @@ def evaluate(summary_path, feature_combine=20, save_to=None):
     print("------------- Prediction Done ---------------")
 
 
-def evaluate_from_path(filepath=""):
+def evaluate_from_path(summary_path=""):
     """
         1. add path info and score calculation specs from args
         2. pass the info to SummEval library and calculate the scores
@@ -111,7 +113,7 @@ def evaluate_from_path(filepath=""):
         5. save the result specified to save_to
     """
     parser = argparse.ArgumentParser(description="predictor")
-    args = default_args(parser=parser, feature_combine=20,file_path=filepath)
+    args = default_args(parser=parser, feature_combine=20, summary_path=summary_path)
     print(f"----------- Extract features ----------------")
     df_features = get_features_as_df(args)
     feature_combine = args.feature_combine

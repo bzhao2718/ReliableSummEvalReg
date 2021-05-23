@@ -53,7 +53,7 @@ def jsonl_to_csv(jsonl_file, csv_path=""):
                     data_writer = csv.writer(result, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                     headers = ['line_id', 'model_id', 'decoded', 'reference', 'coherence', 'consistency',
                                'fluency',
-                               'relevance', 'filepath', 'id', 'text']
+                               'relevance', 'summary_path', 'id', 'text']
                     data_writer.writerow(headers)
                     row_id = 0
                     for count, line in enumerate(inputf):
@@ -72,7 +72,7 @@ def jsonl_to_csv(jsonl_file, csv_path=""):
                             if not annotation_stats or annotation_stats == -1:
                                 raise ValueError("avg_expert is -1!!!")
                             row_item = [row_id, data['model_id'], data['decoded'], reference, *annotation_stats,
-                                        data['filepath'], data['id'], data['text']]
+                                        data['summary_path'], data['id'], data['text']]
                             data_writer.writerow(row_item)
                             row_id += 1
                         except:
